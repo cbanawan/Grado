@@ -1,0 +1,33 @@
+<?php
+
+$title = 'Students';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('student', array('action'=>'add'));?>">Add new student</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Username</th>
+    <th>Action</th>
+</tr>
+<?php foreach ($students as $student) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($student->id);?></td>
+    <td><?php echo $this->escapeHtml($student->profile->first_name);?></td>
+    <td><?php echo $this->escapeHtml($student->profile->last_name);?></td>
+    <td><?php echo $this->escapeHtml($student->profile->user->username);?></td>
+    <td>
+        <a href="<?php echo $this->url('user',
+            array('action'=>'edit', 'id' => $user->id));?>">Edit</a>
+        <a href="<?php echo $this->url('user',
+            array('action'=>'delete', 'id' => $user->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

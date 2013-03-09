@@ -1,0 +1,32 @@
+<?php
+$title = 'Register Student';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('student', array('action' => 'register')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+echo $this->formHidden($form->get('id'));
+?>
+<div class="well">
+<?php    
+$profile = $form->get('profile');
+echo $this->formHidden($profile->get('id'));
+echo $this->formRow($profile->get('first_name'));
+echo $this->formRow($profile->get('last_name'));
+echo $this->formRow($profile->get('email_address'));
+
+$account = $form->get('user');
+echo $this->formRow($account->get('username'));
+echo $this->formRow($account->get('password'));
+echo $this->formRow($account->get('retype_password'));
+echo '</fieldset>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>
+<div>

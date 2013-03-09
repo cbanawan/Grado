@@ -1,0 +1,37 @@
+<?php
+$title = 'Provinces';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <a href="<?php echo $this->url('province', array('action'=>'add'));?>">Add new province</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Abbreviation</th>
+    <th>Country</th>
+    <th>Action</th>
+</tr>
+<?php foreach ($provinces as $province) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($province->id);?></td>
+    <td><?php echo $this->escapeHtml($province->name);?></td>
+    <td><?php echo $this->escapeHtml($province->abbreviation);?></td>
+    <td>
+        <a href="<?php echo $this->url('country',
+            array('action'=>'view', 'id' => $province->country->id));?>">
+            <?php echo $this->escapeHtml($province->country->name . ' (' . $province->country->abbreviation . ')');?>
+        </a>    
+    </td>
+    <td>
+        <a href="<?php echo $this->url('province',
+            array('action'=>'view', 'id' => $province->id));?>">View</a>
+        | <a href="<?php echo $this->url('province',
+            array('action'=>'edit', 'id' => $province->id));?>">Edit</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

@@ -1,0 +1,19 @@
+<?php
+$title = 'Add Offer';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('province', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('semester_id'));
+echo $this->formRow($form->get('offer_id'));
+echo '</fieldset>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

@@ -1,0 +1,21 @@
+<?php
+$title = 'Add Country';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <a href="<?php echo $this->url('country', array('action'=>'index'));?>">Back to country list</a>
+</p>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('country', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('abbreviation'));
+echo '</fieldset>';
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

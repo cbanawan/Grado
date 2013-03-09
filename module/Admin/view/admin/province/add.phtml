@@ -1,0 +1,27 @@
+<?php
+$title = 'Add Province';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <?php if($id): ?>
+        <a href="<?php echo $this->url('country', array('action'=>'view', 'id'=>$id));?>">Back to country detail</a>
+    <?php else: ?>
+        <a href="<?php echo $this->url('province', array('action'=>'index'));?>">Back to province list</a>
+    <?php endif; ?>
+</p>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('province', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('country_id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('abbreviation'));
+echo '</fieldset>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

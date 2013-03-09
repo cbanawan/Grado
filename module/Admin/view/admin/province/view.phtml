@@ -1,0 +1,23 @@
+<?php
+$title = 'Province Detail';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <a href="<?php echo $this->url('province', array('action'=>'index'));?>">Back to province list</a>
+    | <a href="<?php echo $this->url('province', array('action'=>'edit', 'id'=>$country->id));?>">Edit Province</a>
+</p>
+
+<dl class="dl-horizontal">
+    <dt>Province:</dt>
+    <dd><?php echo $province->name; ?></dd>
+    <dt>Abbreviation:</dt>
+    <dd><?php echo $province->abbreviation; ?></dd>
+    <dt>Country:</dt>
+    <dd>
+        <a href="<?php echo $this->url('country',
+            array('action'=>'view', 'id' => $province->country->id));?>">
+            <?php echo $this->escapeHtml($province->country->name . ' (' . $province->country->abbreviation . ')');?>
+        </a>           
+    </dd>
+</dl>
