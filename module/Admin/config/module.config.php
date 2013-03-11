@@ -8,6 +8,7 @@ return array(
             'Admin\Controller\Country' => 'Admin\Controller\CountryController',
             'Admin\Controller\Province' => 'Admin\Controller\ProvinceController',
             'Admin\Controller\Semester' => 'Admin\Controller\SemesterController',
+            'Admin\Controller\Subject' => 'Admin\Controller\SubjectController',
         ),
     ),
     
@@ -65,6 +66,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Admin\Controller\Semester',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'subject' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/subject[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Subject',
                         'action'     => 'index',
                     ),
                 ),

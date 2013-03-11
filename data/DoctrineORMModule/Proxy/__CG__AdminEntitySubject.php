@@ -88,7 +88,7 @@ class Subject extends \Admin\Entity\Subject implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'name', 'short_name', 'description', 'offer');
+        return array('__isInitialized__', 'id', 'name', 'short_name', 'description', 'offers');
     }
 
     public function __clone()

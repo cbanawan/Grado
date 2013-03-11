@@ -43,5 +43,20 @@ class Subject extends EntityAbstract
     /**
      * @ORM\OneToMany(targetEntity="Offer", mappedBy="subject")
      **/
-    protected $offer;
+    protected $offers;
+    
+    public function __construct()
+    {
+        $this->offers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    public function addOffer(Offer $offer)
+    {
+        $this->offers->add($offer);
+    }
+    
+    public function getOffers()
+    {
+        return $this->offers;
+    }
 }

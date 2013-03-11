@@ -3,9 +3,16 @@ $title = 'Add Offer';
 $this->headTitle($title);
 ?>
 <legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <?php if($id): ?>
+        <a href="<?php echo $this->url('semester', array('action'=>'view', 'id'=>$id));?>">Back to Semester Detail</a>
+    <?php else: ?>
+        <a href="<?php echo $this->url('semester', array('action'=>'index'));?>">Back to Semester List</a>
+    <?php endif; ?>
+</p>
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('province', array('action' => 'add')));
+$form->setAttribute('action', $this->url('semester', array('action' => 'add_offer', 'id' => $id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);

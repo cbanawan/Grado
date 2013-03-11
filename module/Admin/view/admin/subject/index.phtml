@@ -1,0 +1,30 @@
+<?php
+$title = 'Subject';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <a href="<?php echo $this->url('subject', array('action'=>'add'));?>">Add New Subject</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Short Name</th>
+    <th>Description</th>
+    <th>Action</th>
+</tr>
+<?php foreach ($subjects as $subject) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($subject->name);?></td>
+    <td><?php echo $this->escapeHtml($subject->short_name);?></td>
+    <td><?php echo $this->escapeHtml($subject->description);?></td>
+    <td>
+        <a href="<?php echo $this->url('subject',
+            array('action'=>'view', 'id' => $subject->id));?>">View</a>
+        | <a href="<?php echo $this->url('subject',
+            array('action'=>'edit', 'id' => $subject->id));?>">Edit</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

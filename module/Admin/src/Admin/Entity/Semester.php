@@ -41,8 +41,24 @@ class Semester extends EntityAbstract
     protected $description;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Offer", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="Offer", inversedBy="users", cascade="persist")
      * @ORM\JoinTable(name="semester_offer")
      **/
-    protected $offers;    
+    protected $offers;
+
+    
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
+    
+    public function addOffer(Offer $offer)
+    {
+        $this->offers->add($offer);
+    }
+
+    public function getOffers()
+    {
+        return $this->offers;
+    }
 }

@@ -1,0 +1,41 @@
+<?php
+$title = 'Subject Detail';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+<p>
+    <a href="<?php echo $this->url('subject', array('action'=>'index'));?>">Back to List</a>
+    | <a href="<?php echo $this->url('subject', array('action'=>'edit', 'id'=>$subject->id));?>">Edit Subject</a>
+    | <a href="<?php echo $this->url('subject', array('action'=>'add_offer', 'id'=>$subject->id));?>">Add Offer</a>
+</p>
+
+<dl class="dl-horizontal">
+    <dt>Subject:</dt>
+    <dd><?php echo $subject->name; ?></dd>
+    <dt>Short Name:</dt>
+    <dd><?php echo $subject->short_name; ?></dd>
+    <dt>Description:</dt>
+    <dd><?php echo $subject->description; ?></dd>
+</dl>
+
+<table class="table">
+<tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($subject->offers as $offer) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($offer->code);?></td>
+    <td><?php echo $this->escapeHtml($offer->name);?></td>
+    <td><?php echo $this->escapeHtml($offer->description);?></td>
+    <td>
+        <a href="<?php echo $this->url('semester',
+            array('action'=>'view', 'id' => $offer->id));?>">View</a>
+        | <a href="<?php echo $this->url('semester',
+            array('action'=>'edit', 'id' => $offer->id));?>">Edit</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

@@ -4,6 +4,7 @@ namespace Admin\Controller;
 use Admin\Controller\EntityActionController;
 use Zend\View\Model\ViewModel;
 use Admin\Form\SemesterOfferForm;
+use Admin\Entity\Offer;
 
 class SemesterController extends EntityActionController
 {
@@ -90,11 +91,31 @@ class SemesterController extends EntityActionController
         
         $form->get('offer_id')->setEmptyOption('(Select One)')
                               ->setValueOptions($offers);
-        
+        // Form is submitted
         $request = $this->getRequest();
         if ($request->isPost()) 
         {
-            // TODO: Create a save procedure
+            // Set the form data and validate
+            $form->setData($request->getPost());
+            if($form->isValid())
+            {
+                $formData = $form->getData();
+                // Fetch the semester object
+                $semester = $this->getEntityManager()
+                                 ->getRepository('Admin\Entity\Semester')
+                                 ->find($formData['semester_id']);
+                // Fetch the offer object
+                $offer = $this->getEntityManager()
+                              ->getRepository('Admin\Entity\Offer')
+                              ->find($formData['offer_id']);
+                // Save semester's new offer
+                $semester->addOffer($offer);
+                $offer->setSemester($semester);
+                $this->getEntityManager()->flush();
+                
+                // Redirect
+                return $this->redirect()->toRoute('semester', array('action' => 'view', 'id' => $formData['semester_id']));                
+            }
         }
         
         return array(

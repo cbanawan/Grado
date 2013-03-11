@@ -40,7 +40,7 @@ class Offer extends EntityAbstract
     protected $description;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Subject", inversedBy="offer")
+     * @ORM\ManyToOne(targetEntity="Subject", inversedBy="offers")
      * @ORM\JoinColumn(name="subject_id", referencedColumnName="id")
      **/
     protected $subject;
@@ -48,5 +48,15 @@ class Offer extends EntityAbstract
     /**
      * @ORM\ManyToMany(targetEntity="Semester", mappedBy="offers")
      **/
-    protected $semester;       
+    protected $semester;  
+    
+    public function __construct()
+    {
+        $this->semester = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    public function setSemester(Semester $semester)
+    {
+        $this->semester->add($semester);
+    }
 }
