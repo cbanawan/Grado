@@ -18,6 +18,7 @@
         "zendframework/zendframework": "2.*",
         "zendframework/zendservice-recaptcha": "2.*",
         "doctrine/common": "2.*",
-        "doctrine/doctrine-orm-module": "0.*"
+        "doctrine/doctrine-orm-module": "0.*",
+        "zendframework/zend-developer-tools": "dev-master"
     }
 }
